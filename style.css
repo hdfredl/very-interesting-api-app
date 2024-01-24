@@ -1,0 +1,25 @@
+.dish {
+  font-weight: bolder;
+}
+
+.points {
+  font-weight: bold;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+:root {
+  --bs-body-bg: blanchedalmond;
+}
+
+body {
+}
+
+.form-control {
+  background-color: #fff;
+  border-radius: 10px;
+}
