@@ -8,11 +8,15 @@ let ratingInput = document.querySelector("#rating-input");
 let pictureInput = document.querySelector("#picture-input");
 
 let addFoodBtn = document.querySelector("#add-food-btn");
+// let updateFoodbtn = document.querySelector("#updateFood");
+// let deleteFoodbtn = document.querySelector("#deleteFood");
 
 console.log(foodContainer);
 
 // event listeners
 addFoodBtn.addEventListener("click", addFoodie);
+// updateFoodbtn.addEventListener("click", updateFoodie);
+// deleteFoodbtn.addEventListener("click", deleteFoodie);
 
 // function
 function addFoodie() {
@@ -21,6 +25,8 @@ function addFoodie() {
     picture: pictureInput.value,
     rating: Number(ratingInput.value),
   }; // skapar ett nytt objekt.
+
+  console.log(newFood);
 
   fetch("http://localhost:5085/Food", {
     method: "POST",
@@ -43,24 +49,10 @@ function getFoods() {
     .then((foodData) => displayFoodsToServer(foodData));
 }
 
-// function displayFoodsToServer(foods) {
-//   foods.forEach((foodfromServer) => {
-//     foodContainer.innerHTML += `
-//     <div class ="user col-4">
-//     <img style="width: 200px; height: 200px; object-fit: cover;" src="${foodfromServer.image}"/>,
-//     <p <span class="dish"> Food dish: ${foodfromServer.name}
-//     <p class="points" > Rating: ${foodfromServer.rating}
-//     </div>
-//     `;
-//   });
-//   console.log(foods);
-// }
-
-// another-foodContainer
-
 let anotherFoodContainer = document.querySelector("#anotherfoodContainer");
 
 function displayFoodsToServer(foods) {
+  anotherFoodContainer.innerHTML = "";
   foods.forEach((foodfromServer) => {
     let html = `
         <div class="user col-4 mb-3"> 
@@ -75,8 +67,8 @@ function displayFoodsToServer(foods) {
               <p class="h5">Food dish: ${foodfromServer.name}</p>
               <p>Rating: ${foodfromServer.rating}</p>
               <div class="d-flex justify-content-between">
-                <button class="btn btn-warning" >Update</button>
-                <button class="btn btn-danger" >Delete</button>
+                <button id="updateFood" class="btn btn-warning" >Update</button>
+                <button id="deleteFood" class="btn btn-danger" >Delete</button>
               </div>
             </div>
           </div>
@@ -84,4 +76,18 @@ function displayFoodsToServer(foods) {
       `;
     anotherFoodContainer.innerHTML += html;
   });
+  // Skpar dessa 2 efter att VS körs uppifrån ner, efter att objects har skapats.
+  let updateFoodbtn = document.querySelector("#updateFood");
+  let deleteFoodbtn = document.querySelector("#deleteFood");
+  // Skpar dessa 2 efter att VS körs uppifrån ner, efter att objects har skapats.
+  updateFoodbtn.addEventListener("click", updateFoodie);
+  deleteFoodbtn.addEventListener("click", deleteFoodie);
+}
+
+function updateFoodie() {
+  // Fixa logik sen för att uppdatera..
+}
+
+function deleteFoodie() {
+  // Fixa logik för att deleta sen..
 }
